@@ -1,0 +1,15 @@
+{
+  "name": "passport-web3",
+  "version": "0.0.1",
+  "description": "Web3 authentication strategy for passport.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "Cooper Maruyama <me@cooperm.com>",
+  "license": "ISC",
+  "dependencies": {
+    "eth-sig-util": "^1.2.2",
+    "passport-strategy": "^1.0.0"
+  }
+}
