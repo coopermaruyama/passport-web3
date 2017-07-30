@@ -57,5 +57,5 @@ const handleSignature = (err, signed) => {
   }
 };
 
-web3.personal.sign(hex, address, handleSign);
+web3.personal.sign(msg, address, handleSign);
 ```
