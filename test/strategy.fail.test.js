@@ -8,7 +8,7 @@ import invalidParams from './helpers/invalid-params';
 describe('Strategy', function() {
 
   describe('failing authentication', function() {
-    var strategy = new Strategy(function(ethAddress, done) {
+    var strategy = new Strategy(function(address, done) {
       return done(null, false);
     });
 
@@ -35,7 +35,7 @@ describe('Strategy', function() {
   });
 
   describe('failing authentication with info', function() {
-    var strategy = new Strategy(function(ethAddress, done) {
+    var strategy = new Strategy(function(address, done) {
       return done(null, false, { message: 'authentication failed' });
     });
 

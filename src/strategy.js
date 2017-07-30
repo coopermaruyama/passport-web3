@@ -22,8 +22,8 @@ var passport = require('passport-strategy')
  * pass an `err` argument if the login should fail.
  *
  * Examples:
- * const onAuth = function (req, ethAddress, msg, signedMsg, done) {
- *   User.findOne({ ethAddress }, function (err, user) {
+ * const onAuth = function (req, address, msg, signed, done) {
+ *   User.findOne({ address }, function (err, user) {
  *     done(err, user);
  *   });
  * }
@@ -65,15 +65,15 @@ class Strategy extends passport.Strategy {
       return this.fail(err, 400);
     }
 
-    const { ethAddress, msg, signedMsg } = credentials;
+    const { address, msg, signed } = credentials;
 
     const params = {
       data: msg,
-      sig: signedMsg
+      sig: signed
     };
     const recovered = sigUtil.recoverPersonalSignature(params);
 
-    if (!recovered || recovered !== ethAddress) {
+    if (!recovered || recovered !== address) {
       const err = {
         message: 'Invalid credentials (recovered address didnt match eth address)'
       };
@@ -87,9 +87,9 @@ class Strategy extends passport.Strategy {
     }
 
     try {
-      const authParams = { msg, signedMsg };
+      const authParams = { msg, signed };
 
-      this._onAuth(ethAddress, done, req, authParams);
+      this._onAuth(address, done, req, authParams);
     } catch (ex) {
       return this.error(ex);
     }
@@ -106,7 +106,7 @@ class Strategy extends passport.Strategy {
     const hasAll = (obj, keys) => obj && keys.every(k => has(obj, k));
 
     const { body, query } = req;
-    const paramKeys = ['ethAddress', 'msg', 'signedMsg'];
+    const paramKeys = ['address', 'msg', 'signed'];
 
     if (hasAll(body, paramKeys)) {
       return body;

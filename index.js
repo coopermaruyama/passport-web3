@@ -64,22 +64,22 @@ util.inherits(Strategy, passport.Strategy);
  */
 Strategy.prototype.authenticate = function(req, options) {
   options = options || {};
-  var ethAddress = req.body.ethAddress;
+  var address = req.body.address;
   var msg = req.body.msg;
-  var signedMsg = req.body.signedMsg;
+  var signed = req.body.signed;
   var self = this;
 
-  if (!ethAddress || !msg || !signedMsg) {
+  if (!address || !msg || !signed) {
     return this.fail({ message: options.badRequestMessage || 'Missing credentials' }, 400);
   }
 
   var params = {
     data: msg,
-    sig: signedMsg
+    sig: signed
   };
   var recovered = sigUtil.recoverPersonalSignature(params);
 
-  if (recovered !== ethAddress) {
+  if (recovered !== address) {
     return this.fail({
       message: 'Invalid credentials (receovered address didnt match eth address)'
     }, 400);
@@ -92,7 +92,7 @@ Strategy.prototype.authenticate = function(req, options) {
   }
 
   try {
-    this._verify(req, ethAddress, msg, signedMsg, onUser);
+    this._verify(req, address, msg, signed, onUser);
   } catch (ex) {
     return self.error(ex);
   }

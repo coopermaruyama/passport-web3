@@ -10,8 +10,8 @@ import invalidParams from './helpers/invalid-params';
 describe('Strategy', function() {
 
   describe('handling a request with valid credentials in body', function() {
-    var strategy = new Strategy(function(ethAddress, done) {
-      if (ethAddress) {
+    var strategy = new Strategy(function(address, done) {
+      if (address) {
         return done(null, { id: '1234' }, { scope: 'read' });
       }
       return done(null, false);
@@ -45,8 +45,8 @@ describe('Strategy', function() {
   });
 
   describe('handling a request with valid credentials in query', function() {
-    var strategy = new Strategy(function(ethAddress, done) {
-      if (ethAddress) {
+    var strategy = new Strategy(function(address, done) {
+      if (address) {
         return done(null, { id: '1234' }, { scope: 'read' });
       }
       return done(null, false);
@@ -80,7 +80,7 @@ describe('Strategy', function() {
   });
 
   describe('handling a request without a body', function() {
-    var strategy = new Strategy(function(ethAddress, done) {
+    var strategy = new Strategy(function(address, done) {
       throw new Error('should not be called');
     });
 
@@ -104,7 +104,7 @@ describe('Strategy', function() {
   });
 
   describe('handling a request without a body, but no username and password', function() {
-    var strategy = new Strategy(function(ethAddress, done) {
+    var strategy = new Strategy(function(address, done) {
       throw new Error('should not be called');
     });
 
@@ -131,7 +131,7 @@ describe('Strategy', function() {
   });
 
   describe('handling a request with a body, but no signed message', function() {
-    var strategy = new Strategy(function(ethAddress, done) {
+    var strategy = new Strategy(function(address, done) {
       throw new Error('should not be called');
     });
 
@@ -146,7 +146,7 @@ describe('Strategy', function() {
         })
         .req(function(req) {
           req.body = {};
-          req.body.ethAddress = validParams.ethAddress;
+          req.body.address = validParams.address;
           req.body.msg = validParams.msg;
         })
         .authenticate();
@@ -159,8 +159,8 @@ describe('Strategy', function() {
     });
   });
 
-  describe('handling a request with a body, but no ethAddress', function() {
-    var strategy = new Strategy(function(ethAddress, done) {
+  describe('handling a request with a body, but no address', function() {
+    var strategy = new Strategy(function(address, done) {
       throw new Error('should not be called');
     });
 
@@ -176,7 +176,7 @@ describe('Strategy', function() {
         .req(function(req) {
           req.body = {};
           req.body.msg = validParams.msg;
-          req.body.signedMsg = validParams.signedMsg;
+          req.body.signed = validParams.signed;
         })
         .authenticate();
     });
