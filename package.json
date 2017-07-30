@@ -1,6 +1,6 @@
 {
   "name": "passport-web3",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Web3 authentication strategy for passport.",
   "main": "dist/index.js",
   "files": [
