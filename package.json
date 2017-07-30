@@ -11,6 +11,10 @@
   },
   "author": "Cooper Maruyama <me@cooperm.com>",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coopermaruyama/passport-web3.git"
+  },
   "dependencies": {
     "eth-sig-util": "^1.2.2",
     "passport-strategy": "^1.0.0",
