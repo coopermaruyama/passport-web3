@@ -31,6 +31,10 @@ app.post('/login', passport.authenticate('web3'));
 ```js
 const ethUtil = require('ethereumjs-util');
 
+// The contents of the message can be anything
+const rawMessage = 'Some message';
+const msg = ethUtil.bufferToHex(new Buffer(rawMessage, 'utf8'));
+const address = web3.eth.accounts[0];
 const handleSignature = (err, signed) => {
   if (!err) {
     const fetchOpts = {
@@ -51,12 +55,7 @@ const handleSignature = (err, signed) => {
       // Auth failed
     })
   }
-}
-
-// The contents of the message can be anything
-const rawMessage = 'Some message';
-const msg = ethUtil.bufferToHex(new Buffer(rawMessage, 'utf8'));
-const address = web3.eth.accounts[0];
+};
 
 web3.personal.sign(hex, address, handleSign);
 ```
