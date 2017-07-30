@@ -4,12 +4,32 @@
   "description": "Web3 authentication strategy for passport.",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "mocha-webpack --webpack-config webpack.config.js --require test/.setup.js test/.setup.js test/**/*.test.js",
+    "test:watch": "mocha-webpack --watch --webpack-config webpack.config.js --require test/.setup.js test/.setup.js test/**/*.test.js",
+    "prepare": "npm run build",
+    "build": "webpack --config webpack.config.js"
   },
   "author": "Cooper Maruyama <me@cooperm.com>",
   "license": "ISC",
   "dependencies": {
     "eth-sig-util": "^1.2.2",
-    "passport-strategy": "^1.0.0"
+    "passport-strategy": "^1.0.0",
+    "source-map-support": "^0.4.15"
+  },
+  "devDependencies": {
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-flow": "^6.23.0",
+    "chai": "^4.1.0",
+    "chai-passport-strategy": "^1.0.0",
+    "eslint": "^4.3.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
+    "mocha": "^3.4.2",
+    "mocha-webpack": "^1.0.0-rc.1",
+    "webpack": "^3.4.1",
+    "webpack-node-externals": "^1.6.0"
   }
 }
