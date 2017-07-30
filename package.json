@@ -2,7 +2,7 @@
   "name": "passport-web3",
   "version": "0.1.2",
   "description": "Web3 authentication strategy for passport.",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "test": "mocha-webpack --webpack-config webpack.config.js --require test/.setup.js test/.setup.js test/**/*.test.js",
     "test:watch": "mocha-webpack --watch --webpack-config webpack.config.js --require test/.setup.js test/.setup.js test/**/*.test.js",
